@@ -1,0 +1,46 @@
+frameworkVersion: '3'
+service: noughts-and-crosses-api
+
+plugins:
+  - serverless-esbuild
+
+provider:
+  iam:
+    role:
+      statements:
+        - Action:
+            - lambda:InvokeFunction
+            - lambda:InvokeAsync
+          Effect: Allow
+          Resource: "*"
+  name: aws
+  region: eu-west-1
+  runtime: nodejs14.x
+  stackTags:
+    Owner: "${env:AWS_OWNER}"
+    Service: noughts-and-crosses
+    Team: "${env:AWS_OWNER}"
+  tags:
+    Environment: sandbox-dev
+    Owner: "${env:AWS_OWNER}"
+    Service: noughts-and-crosses
+
+functions:
+  checkWinner:
+    events:
+      - httpApi:
+          method: post
+          path: /check-winner
+    handler: src/game.checkWinner
+  nextMove:
+    events:
+      - httpApi:
+          method: post
+          path: /next-move
+    handler: src/game.nextMove
+  validateGrid:
+    events:
+      - httpApi:
+          method: post
+          path: /validate
+    handler: src/game.validateGrid

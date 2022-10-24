@@ -1,0 +1,17 @@
+{
+  "name": "noughts-and-crosses-api",
+  "version": "0.1.0",
+  "main": "src/game.ts",
+  "author": "Matt Smith",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.108",
+    "@types/node": "^18.11.3",
+    "esbuild": "^0.15.12",
+    "serverless": "^3.23.0",
+    "serverless-esbuild": "^1.33.0"
+  },
+  "dependencies": {
+    "@mattsmithcode/noughts-and-crosses": "^0.1.0"
+  }
+}
